@@ -255,6 +255,5 @@ toolboxes that inspired this project (in no particular order):
 [lint-staged]: https://github.com/okonet/lint-staged
 [cra]: https://github.com/facebook/create-react-app
 [hooks]: https://www.atlassian.com/git/tutorials/git-hooks#local-hooks
-[kenneth-wheelerino]:
-  https://medium.com/codezillas/a-bitter-guide-to-open-source-a8e3b6a3c1c4
+[kenneth-wheelerino]: https://medium.com/codezillas/a-bitter-guide-to-open-source-a8e3b6a3c1c4
 [magnificent-beast]: https://twitter.com/ken_wheeler

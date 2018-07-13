@@ -18,22 +18,24 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint-staged"
     }
   },
   "lint-staged": {
     "linters": {
       "*.js": [
         "npm run eslint -- --fix",
-        "npm run prettier -- --write"
+        "npm run prettier -- --write",
+        "git add"
       ],
       "*.{md,json}": [
-        "npm run prettier -- --write"
+        "npm run prettier -- --write",
+        "git add"
       ]
     },
     "ignore": [
-      "**/dist/**",
-      "**/node_modules/**"
+      "package-lock.json",
+      "**/dist/**"
     ]
   },
   "engines": {

@@ -1,0 +1,42 @@
+{
+  "name": "create-microbundle-module",
+  "private": true,
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "prettier": "prettier",
+    "eslint": "eslint"
+  },
+  "author": "Sergey Petushkov <petushkov.sergey@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "husky": "^1.0.0-rc.13",
+    "jest": "^23.4.0",
+    "lerna": "^3.0.0-beta.21",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "npm run eslint -- --fix",
+        "npm run prettier -- --write"
+      ],
+      "*.{md,json}": [
+        "npm run prettier -- --write"
+      ]
+    },
+    "ignore": [
+      "**/dist/**",
+      "**/node_modules/**"
+    ]
+  },
+  "engines": {
+    "node": ">=6.12.0"
+  }
+}

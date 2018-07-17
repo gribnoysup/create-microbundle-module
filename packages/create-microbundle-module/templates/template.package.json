@@ -1,0 +1,23 @@
+{
+  "name": "$module-name",
+  "version": "0.1.0",
+  "main": "dist/$module-name.js",
+  "umd:main": "dist/$module-name.umd.js",
+  "module": "dist/$module-name.m.js",
+  "source": "src/$module-name.js",
+  "files": ["dist"],
+  "scripts": {
+    "test": "microbundle-module-scripts test",
+    "build": "microbundle-module-scripts build",
+    "start": "microbundle-module-scripts start",
+    "lint-staged": "microbundle-module-scripts lint-staged"
+  },
+  "author": "",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged",
+      "pre-push": "npm test"
+    }
+  }
+}

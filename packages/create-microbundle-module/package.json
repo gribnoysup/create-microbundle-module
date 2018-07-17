@@ -1,0 +1,55 @@
+{
+  "name": "create-microbundle-module",
+  "version": "0.0.0",
+  "description": "",
+  "bin": {
+    "create-microbundle-module": "index.js"
+  },
+  "main": "dist/main.js",
+  "umd:main": "dist/main.umd.js",
+  "module": "dist/main.m.js",
+  "source": "src/main.js",
+  "files": [
+    "dist",
+    "templates",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "cross-env SKIP_DEPENDENCIES_INSTALL_USE_ONLY_FOR_TESTS=true jest --env node",
+    "build": "babel src --out-dir dist",
+    "watch": "npm run build -- --watch",
+    "prepublish": "npm run build"
+  },
+  "keywords": [],
+  "author": "Sergey Petushkov <petushkov.sergey@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "camelcase": "^5.0.0",
+    "commander": "^2.16.0",
+    "cross-env": "^5.2.0",
+    "execa": "^0.10.0",
+    "fs-extra": "^6.0.1",
+    "microbundle-module-utils": "^0.0.0",
+    "semver": "^5.5.0",
+    "simple-git": "^1.96.0",
+    "validate-npm-package-name": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=6.12.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.54",
+    "@babel/core": "^7.0.0-beta.54",
+    "@babel/polyfill": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0-beta.54",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.4.0",
+    "jest": "^23.4.1"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "templates"
+    ]
+  }
+}

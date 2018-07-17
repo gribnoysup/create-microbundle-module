@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createModule should create .gitignore file from template 1`] = `
+"node_modules
+dist
+*.log
+.*
+!.gitignore
+!.microbundle-module-config
+"
+`;
+
+exports[`createModule should create package.json file from template 1`] = `
+"{
+  \\"name\\": \\"my-awesome-module\\",
+  \\"version\\": \\"0.1.0\\",
+  \\"main\\": \\"dist/my-awesome-module.js\\",
+  \\"umd:main\\": \\"dist/my-awesome-module.umd.js\\",
+  \\"module\\": \\"dist/my-awesome-module.m.js\\",
+  \\"source\\": \\"src/my-awesome-module.js\\",
+  \\"files\\": [
+    \\"dist\\"
+  ],
+  \\"scripts\\": {
+    \\"test\\": \\"microbundle-module-scripts test\\",
+    \\"build\\": \\"microbundle-module-scripts build\\",
+    \\"start\\": \\"microbundle-module-scripts start\\",
+    \\"lint-staged\\": \\"microbundle-module-scripts lint-staged\\"
+  },
+  \\"author\\": \\"Sergey Petushkov <petushkov.sergey@gmail.com>\\",
+  \\"license\\": \\"ISC\\",
+  \\"husky\\": {
+    \\"hooks\\": {
+      \\"pre-commit\\": \\"npm run lint-staged\\",
+      \\"pre-push\\": \\"npm test\\"
+    }
+  },
+  \\"target\\": \\"web\\"
+}"
+`;
+
+exports[`createModule should create source entry file from template 1`] = `
+"export default function myAwesomeModule() {
+  /** You are ready to write your awesome module 🎉 */
+}
+"
+`;
+
+exports[`createModule should create test file from template 1`] = `
+"import myAwesomeModule from '../src/my-awesome-module';
+
+describe('myAwesomeModule', () => {
+  /** Don't be shy, write your first test 😉 */
+});
+"
+`;

@@ -1,0 +1,33 @@
+{
+  "name": "microbundle-module-utils",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "source": "src/index.js",
+  "scripts": {
+    "build": "microbundle --target node --external child_process,chalk,cosmiconfig,fs-extra,log-symbols,ora,pkg-up,please-upgrade-node",
+    "watch": "npm run build -- --watch",
+    "prepublish": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.12.0"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cosmiconfig": "^5.0.5",
+    "fs-extra": "^6.0.1",
+    "log-symbols": "^2.2.0",
+    "ora": "^2.1.0",
+    "pkg-up": "^2.0.0",
+    "please-upgrade-node": "^3.1.1"
+  },
+  "devDependencies": {
+    "jest": "^23.4.1",
+    "microbundle": "^0.5.1"
+  }
+}

@@ -3,13 +3,11 @@
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
-  "module": "dist/index.m.js",
-  "source": "src/index.js",
   "scripts": {
-    "build": "microbundle --target node --external child_process,chalk,cosmiconfig,fs-extra,log-symbols,ora,pkg-up,please-upgrade-node",
+    "test": "jest --env node",
+    "build": "babel src --out-dir dist",
     "watch": "npm run build -- --watch",
-    "prepublish": "npm run build"
+    "prepare": "rm -rf dist && npm run test && rm -rf dist && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +25,12 @@
     "please-upgrade-node": "^3.1.1"
   },
   "devDependencies": {
-    "jest": "^23.4.1",
-    "microbundle": "^0.5.1"
+    "@babel/cli": "^7.0.0-beta.54",
+    "@babel/core": "^7.0.0-beta.54",
+    "@babel/polyfill": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0-beta.54",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.4.0",
+    "jest": "^23.4.1"
   }
 }

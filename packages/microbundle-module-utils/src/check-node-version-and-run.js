@@ -13,8 +13,10 @@ export default function checkNodeVersionAndRun(modulePath) {
         message: function message(requiredVersion) {
           const version = process.versions.node;
           const message =
-            `${symbols.warning}  You are running Node ${version}.\n` +
-            `"${pkg.name}" requires Node ${requiredVersion} or higher. ` +
+            `${symbols.warning} You are running Node ${version}.\n` +
+            `"${
+              pkg.name
+            }" requires Node ${requiredVersion.trim()} or higher. ` +
             `Please update your version of Node.`;
 
           return chalk.yellow(message);

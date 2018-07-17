@@ -1,0 +1,6 @@
+{
+  "name": "compatible",
+  "engines": {
+    "node": ">= 0"
+  }
+}

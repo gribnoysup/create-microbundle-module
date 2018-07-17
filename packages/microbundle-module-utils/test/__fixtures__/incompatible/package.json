@@ -1,0 +1,6 @@
+{
+  "name": "incompatible",
+  "engines": {
+    "node": ">= 9999"
+  }
+}

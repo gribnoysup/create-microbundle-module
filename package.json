@@ -4,7 +4,11 @@
   "scripts": {
     "lint-staged": "lint-staged",
     "prettier": "prettier",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "lerna:bootstrap": "lerna bootstrap --ignore-scripts",
+    "lerna:exec": "lerna exec",
+    "lerna:publish": "lerna publish",
+    "lerna:add": "lerna add"
   },
   "author": "Sergey Petushkov <petushkov.sergey@gmail.com>",
   "license": "ISC",

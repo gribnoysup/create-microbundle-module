@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createModule should create .gitignore file from template 1`] = `
+exports[`createModule should create .gitignore file 1`] = `
 "node_modules
 dist
 *.log
@@ -10,43 +10,51 @@ dist
 "
 `;
 
-exports[`createModule should create package.json file from template 1`] = `
-"{
-  \\"name\\": \\"my-awesome-module\\",
-  \\"version\\": \\"0.1.0\\",
-  \\"main\\": \\"dist/my-awesome-module.js\\",
-  \\"umd:main\\": \\"dist/my-awesome-module.umd.js\\",
-  \\"module\\": \\"dist/my-awesome-module.m.js\\",
-  \\"source\\": \\"src/my-awesome-module.js\\",
-  \\"files\\": [
-    \\"dist\\"
-  ],
-  \\"scripts\\": {
-    \\"test\\": \\"microbundle-module-scripts test\\",
-    \\"build\\": \\"microbundle-module-scripts build\\",
-    \\"start\\": \\"microbundle-module-scripts start\\",
-    \\"lint-staged\\": \\"microbundle-module-scripts lint-staged\\"
-  },
-  \\"author\\": \\"Sergey Petushkov <petushkov.sergey@gmail.com>\\",
-  \\"license\\": \\"ISC\\",
-  \\"husky\\": {
-    \\"hooks\\": {
-      \\"pre-commit\\": \\"npm run lint-staged\\",
-      \\"pre-push\\": \\"npm test\\"
-    }
-  },
-  \\"target\\": \\"web\\"
-}"
+exports[`createModule should create initial files structure 1`] = `
+Array [
+  "my-awesome-module/.gitignore",
+  "my-awesome-module/package.json",
+  "my-awesome-module/src/my-awesome-module.js",
+  "my-awesome-module/test/my-awesome-module.test.js",
+]
 `;
 
-exports[`createModule should create source entry file from template 1`] = `
+exports[`createModule should create package.json file 1`] = `
+Object {
+  "files": Array [
+    "dist",
+  ],
+  "husky": Object {
+    "hooks": Object {
+      "pre-commit": "npm run lint-staged",
+      "pre-push": "npm test",
+    },
+  },
+  "license": "ISC",
+  "main": "dist/my-awesome-module.js",
+  "module": "dist/my-awesome-module.m.js",
+  "name": "my-awesome-module",
+  "scripts": Object {
+    "build": "microbundle-module-scripts build",
+    "lint-staged": "microbundle-module-scripts lint-staged",
+    "start": "microbundle-module-scripts start",
+    "test": "microbundle-module-scripts test",
+  },
+  "source": "src/my-awesome-module.js",
+  "target": "web",
+  "umd:main": "dist/my-awesome-module.umd.js",
+  "version": "0.1.0",
+}
+`;
+
+exports[`createModule should create source entry 1`] = `
 "export default function myAwesomeModule() {
   /** You are ready to write your awesome module 🎉 */
 }
 "
 `;
 
-exports[`createModule should create test file from template 1`] = `
+exports[`createModule should create test file 1`] = `
 "import myAwesomeModule from '../src/my-awesome-module';
 
 describe('myAwesomeModule', () => {

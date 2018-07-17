@@ -24,6 +24,7 @@
     "camelcase": "^5.0.0",
     "commander": "^2.16.0",
     "cross-env": "^5.2.0",
+    "directory-tree": "^2.1.0",
     "execa": "^0.10.0",
     "fs-extra": "^6.0.1",
     "microbundle-module-utils": "^0.0.0",

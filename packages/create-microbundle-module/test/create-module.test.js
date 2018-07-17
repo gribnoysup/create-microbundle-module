@@ -1,6 +1,9 @@
 import path from 'path';
 import os from 'os';
+
 import fs from 'fs-extra';
+import dirTree from 'directory-tree';
+
 import createModule from '../src/create-module';
 
 describe('createModule', async () => {
@@ -15,50 +18,59 @@ describe('createModule', async () => {
     done();
   });
 
-  it('should create module directory', async () => {
-    expect(await fs.pathExists(fixtureModuleDir)).toBeTruthy();
-  });
+  it('should create initial files structure', () => {
+    const files = [];
 
-  it('should init git repo', async () => {
-    const gitPath = path.resolve(fixtureModuleDir, '.git');
-
-    expect(await fs.pathExists(gitPath)).toBeTruthy();
-  });
-
-  it('should create .gitignore file from template', async () => {
-    const gitignorePath = path.resolve(fixtureModuleDir, '.gitignore');
-
-    expect(await fs.pathExists(gitignorePath)).toBeTruthy();
-    expect(await fs.readFile(gitignorePath, 'utf-8')).toMatchSnapshot();
-  });
-
-  it('should create package.json file from template', async () => {
-    const packagePath = path.resolve(fixtureModuleDir, 'package.json');
-
-    expect(await fs.pathExists(packagePath)).toBeTruthy();
-    expect(await fs.readFile(packagePath, 'utf-8')).toMatchSnapshot();
-  });
-
-  it('should create source entry file from template', async () => {
-    const srcPath = path.resolve(
+    dirTree(
       fixtureModuleDir,
-      'src',
-      'my-awesome-module.js'
+      {
+        exclude: /\.git\/.+/,
+        normalizePath: true,
+      },
+      item => {
+        files.push(item.path.replace(fixtureModuleDir, 'my-awesome-module'));
+      }
     );
 
-    expect(await fs.pathExists(srcPath)).toBeTruthy();
-    expect(await fs.readFile(srcPath, 'utf-8')).toMatchSnapshot();
+    expect(files).toMatchSnapshot();
   });
 
-  it('should create test file from template', async () => {
-    const testPath = path.resolve(
-      fixtureModuleDir,
-      'test',
-      'my-awesome-module.test.js'
+  it('should create source entry', async () => {
+    const entry = await fs.readFile(
+      path.join(fixtureModuleDir, 'src', 'my-awesome-module.js'),
+      'utf-8'
     );
 
-    expect(await fs.pathExists(testPath)).toBeTruthy();
-    expect(await fs.readFile(testPath, 'utf-8')).toMatchSnapshot();
+    expect(entry).toMatchSnapshot();
+  });
+
+  it('should create test file', async () => {
+    const test = await fs.readFile(
+      path.join(fixtureModuleDir, 'test', 'my-awesome-module.test.js'),
+      'utf-8'
+    );
+
+    expect(test).toMatchSnapshot();
+  });
+
+  it('should create .gitignore file', async () => {
+    const gitignore = await fs.readFile(
+      path.join(fixtureModuleDir, '.gitignore'),
+      'utf-8'
+    );
+
+    expect(gitignore).toMatchSnapshot();
+  });
+
+  it('should create package.json file', async () => {
+    const pkg = await fs.readJSON(path.join(fixtureModuleDir, 'package.json'));
+
+    // INFO: package.author is dynamic and depends on git config.
+    // To avoid tests failing with unmatched snapshot, we will
+    // "delete" author
+    delete pkg.author;
+
+    expect(pkg).toMatchSnapshot();
   });
 
   afterAll(async done => {

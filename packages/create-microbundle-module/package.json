@@ -6,9 +6,6 @@
     "create-microbundle-module": "index.js"
   },
   "main": "dist/main.js",
-  "umd:main": "dist/main.umd.js",
-  "module": "dist/main.m.js",
-  "source": "src/main.js",
   "files": [
     "dist",
     "templates",
@@ -18,7 +15,7 @@
     "test": "cross-env SKIP_DEPENDENCIES_INSTALL_USE_ONLY_FOR_TESTS=true jest --env node",
     "build": "babel src --out-dir dist",
     "watch": "npm run build -- --watch",
-    "prepublish": "npm run build"
+    "prepare": "npm run test && rm -rf dist && npm run build"
   },
   "keywords": [],
   "author": "Sergey Petushkov <petushkov.sergey@gmail.com>",

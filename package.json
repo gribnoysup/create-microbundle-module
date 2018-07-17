@@ -5,10 +5,10 @@
     "lint-staged": "lint-staged",
     "prettier": "prettier",
     "eslint": "eslint",
-    "lerna:bootstrap": "lerna bootstrap --ignore-scripts",
-    "lerna:exec": "lerna exec",
-    "lerna:publish": "lerna publish",
-    "lerna:add": "lerna add"
+    "bootstrap": "lerna bootstrap --ignore-scripts",
+    "all:exec": "lerna exec --",
+    "all:publish": "lerna publish",
+    "all:add": "lerna add"
   },
   "author": "Sergey Petushkov <petushkov.sergey@gmail.com>",
   "license": "ISC",

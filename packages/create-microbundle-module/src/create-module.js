@@ -82,7 +82,7 @@ const createModule = async (
     const paths = {
       'entry.js': path.join(modulePath, 'src', `${moduleName}.js`),
       'entry.test.js': path.join(modulePath, 'test', `${moduleName}.test.js`),
-      '.gitignore': path.join(modulePath, '.gitignore'),
+      gitignore: path.join(modulePath, '.gitignore'),
     };
 
     for (const key in paths) {

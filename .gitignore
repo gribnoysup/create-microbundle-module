@@ -7,3 +7,4 @@ dist
 !.eslintrc*
 !.prettierrc*
 !.babelrc*
+*.tgz

@@ -5,15 +5,23 @@ import checkNodeVersionAndRun from '../src/check-node-version-and-run';
 jest.mock('child_process');
 
 describe('checkNodeVersionAndRun', () => {
-  let exit;
+  let exit, error;
 
   beforeEach(() => {
     exit = process.exit;
+    // eslint-disable-next-line no-console
+    error = console.error;
+
     process.exit = jest.fn();
+    // eslint-disable-next-line no-console
+    console.error = jest.fn();
   });
 
   afterEach(() => {
     process.exit = exit;
+    // eslint-disable-next-line no-console
+    console.error = error;
+
     if (child_process.fork.mockClear) {
       child_process.fork.mockClear();
     }
@@ -53,6 +61,8 @@ describe('checkNodeVersionAndRun', () => {
 
     await checkNodeVersionAndRun(incompatibleModulePath);
 
+    // eslint-disable-next-line no-console
+    expect(console.error).toHaveBeenCalledTimes(1);
     expect(process.exit).toBeCalledWith(1);
   });
 });

@@ -1,0 +1,29 @@
+{
+  "name": "microbundle-module-scripts",
+  "version": "0.0.0",
+  "description": "",
+  "bin": {
+    "microbundle-module-scripts": "index.js"
+  },
+  "main": "scripts/main.js",
+  "scripts": {
+    "test": "jest --env node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.16.0",
+    "eslint": "^5.0.1",
+    "fs-extra": "^6.0.1",
+    "husky": "^1.0.0-rc.13",
+    "jest": "^23.4.1",
+    "lint-staged": "^7.2.0",
+    "microbundle": "^0.5.1",
+    "microbundle-module-utils": "^0.0.0",
+    "prettier": "^1.13.7"
+  },
+  "engines": {
+    "node": ">=6.12.0"
+  }
+}

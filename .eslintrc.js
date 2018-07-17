@@ -1,4 +1,34 @@
+const { configs: jestEslint } = require('eslint-plugin-jest');
+const { configs: nodeEslint } = require('eslint-plugin-node');
+
 module.exports = {
-  extends: ['eslint:recommended'],
-  env: { es6: true, node: true },
+  plugins: ['node'],
+  extends: ['eslint:recommended', 'plugin:node/recommended'],
+  parserOptions: {
+    ecmaVersion: 2018,
+  },
+  env: {
+    node: true,
+    es6: true,
+  },
+  overrides: [
+    Object.assign({}, jestEslint.recommended, {
+      files: ['**/*.test.js', '**/test/**/*.js'],
+      env: {
+        jest: true,
+      },
+    }),
+    {
+      files: ['**/{src,test}/**/*.js'],
+      rules: {
+        'node/no-unsupported-features': 0,
+      },
+    },
+    {
+      files: ['**/{src,test}/**/*.js'],
+      parserOptions: {
+        sourceType: 'module',
+      },
+    },
+  ],
 };

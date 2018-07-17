@@ -19,6 +19,12 @@ module.exports = {
       },
     }),
     {
+      files: ['**/__mocks__/**'],
+      env: {
+        jest: true,
+      },
+    },
+    {
       files: ['**/{src,test,__mocks__}/**/*.js'],
       rules: {
         'node/no-unsupported-features': 0,

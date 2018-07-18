@@ -5,7 +5,7 @@
     "lint-staged": "lint-staged",
     "prettier": "prettier",
     "eslint": "eslint",
-    "bootstrap": "lerna bootstrap --ignore-scripts",
+    "bootstrap": "lerna bootstrap -- --ignore-scripts",
     "all:exec": "lerna exec --",
     "all:publish": "lerna publish",
     "all:add": "lerna add"

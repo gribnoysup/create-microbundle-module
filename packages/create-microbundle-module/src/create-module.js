@@ -142,12 +142,11 @@ const createModule = async (
         : [scriptsVersion.trim()];
 
     if (!process.env.SKIP_DEPENDENCIES_INSTALL_USE_ONLY_FOR_TESTS) {
-      await execa('npm', [
-        'install',
-        '--save-dev',
-        '--save-exact',
-        ...dependencies,
-      ]);
+      await execa(
+        'npm',
+        ['install', '--save-dev', '--save-exact', ...dependencies],
+        { cwd: moduleDirectory }
+      );
     }
 
     logger.success();

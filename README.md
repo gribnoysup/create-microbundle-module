@@ -239,7 +239,7 @@ toolboxes that inspired this project (in no particular order):
 
 ## License
 
-[MIT](LICENSE)
+[ISC](LICENSE)
 
 [microbundle]: https://github.com/developit/microbundle
 [jest]: https://jestjs.io/

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import programm from 'commander';
+import commander from 'commander';
 import createModule from './create-module';
 
 let moduleDirectory;
@@ -9,7 +9,7 @@ const { name, version } = fs.readFileSync(
   path.resolve(__dirname, '..', 'package.json')
 );
 
-programm
+commander
   .name(name)
   .version(version)
   .arguments('<module-directory>')
@@ -21,9 +21,10 @@ programm
   )
   .option(
     '-s, --scripts-version <alternative-version>',
-    'use a non-standard version of microbundle-module-scripts',
+    'Use a non-standard version of microbundle-module-scripts',
     'microbundle-module-scripts'
   )
+  .option('-n, --no-commit', 'If true, will skip initial commit', false)
   // TODO: We will need additional bootstrapping for TS (or Reason, when
   // it lands https://github.com/developit/microbundle/pull/142)
   // .option(
@@ -34,9 +35,10 @@ programm
   // )
   .action(dir => (moduleDirectory = dir));
 
-programm.parse(process.argv);
+commander.parse(process.argv);
 
 createModule(moduleDirectory, {
-  target: programm.target,
-  scriptsVersion: programm.scriptsVersion,
+  target: commander.target,
+  scriptsVersion: commander.scriptsVersion,
+  noCommit: commander.noCommit,
 });

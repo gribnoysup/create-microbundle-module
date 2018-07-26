@@ -2,9 +2,8 @@
 /* eslint node/no-unsupported-features: ["error", { version: 4 }] */
 
 var path = require('path');
-var checkNodeVersionAndRun = require('microbundle-module-utils')
-  .checkNodeVersionAndRun;
+var utils = require('microbundle-module-utils');
 
-var main = path.resolve(__dirname, 'dist', 'main');
+var main = require.resolve(path.resolve(__dirname, 'dist', 'main'));
 
-checkNodeVersionAndRun(main);
+utils.checkNodeVersionAndRun(main);

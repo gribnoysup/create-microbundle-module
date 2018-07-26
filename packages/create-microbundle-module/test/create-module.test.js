@@ -14,7 +14,11 @@ describe('createModule', async () => {
       target: 'web',
       scriptsVersion: 'create-microbundle-module',
     });
+    done();
+  });
 
+  afterAll(async done => {
+    await fs.remove(fixtureModuleDir);
     done();
   });
 
@@ -68,14 +72,9 @@ describe('createModule', async () => {
     // INFO: package.author is dynamic and depends on git config.
     // To avoid tests failing with unmatched snapshot, we will
     // "delete" author
+    // TODO: mock git module to return something here?
     delete pkg.author;
 
     expect(pkg).toMatchSnapshot();
-  });
-
-  afterAll(async done => {
-    await fs.remove(fixtureModuleDir);
-
-    done();
   });
 });

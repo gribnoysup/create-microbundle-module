@@ -7,9 +7,10 @@ const mockLogger = {
   //
   // eslint-disable-next-line no-console
   error: console.error,
-  warning: () => {},
+  warn: () => {},
   success: () => {},
   start: () => {},
+  info: () => {},
 };
 
 export const logger = mockLogger;

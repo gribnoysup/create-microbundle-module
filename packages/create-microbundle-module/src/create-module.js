@@ -8,6 +8,8 @@ import semver from 'semver';
 import camelCase from 'camelcase';
 import validateName from 'validate-npm-package-name';
 
+import chalk from 'chalk';
+
 import { logger as defaultLogger } from 'microbundle-module-utils';
 
 const git = Git();
@@ -29,11 +31,11 @@ const getTemplateByName = async templateName => {
 
 const createModule = async (
   moduleDirectory,
-  { target, scriptsVersion } = {}
+  { target, scriptsVersion, noCommit } = {}
 ) => {
   if (!moduleDirectory || typeof moduleDirectory !== 'string') {
-    logger.warning(
-      `Please specify the project directory: $ ${programm.name()} ./my-awesome-module`
+    logger.warn(
+      chalk`Please specify the project directory: {dim $} {blue ${programm.name()} ./my-awesome-module}`
     );
     return;
   }
@@ -42,6 +44,7 @@ const createModule = async (
 
   const modulePath = path.resolve(process.cwd(), moduleDirectory);
   const moduleName = path.basename(modulePath);
+  const shortPath = modulePath.replace(process.cwd(), '.');
 
   let isGitAvailable = true;
 
@@ -63,7 +66,7 @@ const createModule = async (
     // otherwise it throws off npm packaging command and excludes the whole 'templates'
     // folder from being published
     //
-    // TODO: Create a small reproducible repo and submit an issue to npm
+    // TODO: Create a small reproducible repo and submit an issue to npm?
     replaceModuleName(
       await getTemplateByName('template.package.json'),
       moduleName
@@ -73,11 +76,13 @@ const createModule = async (
   pkg.target = target;
 
   logger.log();
-  logger.log(`Creating a new home for module "${moduleName}" in ${modulePath}`);
+  logger.log(
+    chalk`Creating a new home for module {green "${moduleName}"} in {green ${shortPath}}`
+  );
 
   try {
     logger.log();
-    logger.start(`Generating initial files`);
+    logger.start('Generating initial files');
 
     const paths = {
       'entry.js': path.join(modulePath, 'src', `${moduleName}.js`),
@@ -114,15 +119,13 @@ const createModule = async (
     const email = await git.raw(['config', 'user.email']);
 
     if (name || email) {
-      pkg.author = [name ? name.trim() : '', email ? `<${email.trim()}>` : '']
-        .filter(Boolean)
-        .join(' ');
+      pkg.author = { name, email };
     }
 
     logger.success();
   } catch (error) {
     isGitAvailable = false;
-    logger.warning(
+    logger.warn(
       "Couldn't initialize git repo: git hooks creation and first commit will be skipped"
     );
   }
@@ -136,18 +139,17 @@ const createModule = async (
     );
 
     const semverScriptsVersion = semver.valid(scriptsVersion);
+
     const dependencies =
       semverScriptsVersion !== null
         ? [`microbundle-module-scripts@${semverScriptsVersion}`]
         : [scriptsVersion.trim()];
 
-    if (!process.env.SKIP_DEPENDENCIES_INSTALL_USE_ONLY_FOR_TESTS) {
-      await execa(
-        'npm',
-        ['install', '--save-dev', '--save-exact', ...dependencies],
-        { cwd: moduleDirectory }
-      );
-    }
+    await execa(
+      'npm',
+      ['install', '--save-dev', '--save-exact', ...dependencies],
+      { cwd: moduleDirectory }
+    );
 
     logger.success();
   } catch (error) {
@@ -158,7 +160,7 @@ const createModule = async (
     return;
   }
 
-  if (isGitAvailable === true) {
+  if (isGitAvailable === true && noCommit === false) {
     logger.start('Creating initial commit');
 
     await git.add('*');
@@ -168,6 +170,40 @@ const createModule = async (
 
     logger.success();
   }
+
+  if (isGitAvailable === true && noCommit === true) {
+    logger.info('Skipping initial commit');
+  }
+
+  logger.log();
+
+  logger.log(chalk`
+{green All done!} You development environment is set up and ready to go.
+
+1. Go to your project directory:
+
+{dim $} {blue cd ${shortPath}}
+
+2. Start development environment
+
+{dim $} {blue npm start}
+
+Enjoy using this tool? Please, give it a star!
+
+  {magenta {underline http://bit.ly/create-microbundle-module}}
+
+To learn more about tools included with this package,
+you can check out the documentation:
+
+  {magenta {underline https://bit.ly/whats-in-the-package}}
+
+If you have questions or issues with this package,
+feel free to open an issue:
+
+  {magenta {underline https://bit.ly/cmm-issues}}
+  `);
+
+  logger.log();
 };
 
 export default createModule;

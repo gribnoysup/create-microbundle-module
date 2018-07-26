@@ -26,14 +26,11 @@ module.exports = {
     },
     {
       files: ['**/{src,test,__mocks__}/**/*.js'],
-      rules: {
-        'node/no-unsupported-features': 0,
-      },
-    },
-    {
-      files: ['**/{src,test,__mocks__}/**/*.js'],
       parserOptions: {
         sourceType: 'module',
+      },
+      rules: {
+        'node/no-unsupported-features': 0,
       },
     },
   ],

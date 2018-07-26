@@ -58,13 +58,14 @@ First of all, there is `create-microbundle-module` CLI that will help you to
 bootstrap the project.
 
 ```
-Usage:
+Usage: create-microbundle-module [options] <module-directory>
 
-  create-microbundle-module [options] <module-directory>
+  Options:
 
-Options:
-
-  -t, --target   Your module target environment: web, node (default web)
+    -V, --version                                output the version number
+    -t, --target <target>                        Your module target environment: web, node (default: web)
+    -s, --scripts-version <alternative-version>  Use a non-standard version of microbundle-module-scripts (default: microbundle-module-scripts)
+    -n, --no-commit                              If present, will skip initial commit
 ```
 
 Calling this CLI can be done in many different ways, here are a few examples:

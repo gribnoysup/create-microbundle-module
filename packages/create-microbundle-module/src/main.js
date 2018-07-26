@@ -15,7 +15,7 @@ commander
   .arguments('<module-directory>')
   .option(
     '-t, --target <target>',
-    'Your module target environment: web, node (default web)',
+    'Your module target environment: web, node',
     /^(web|node)$/i,
     'web'
   )
@@ -24,7 +24,7 @@ commander
     'Use a non-standard version of microbundle-module-scripts',
     'microbundle-module-scripts'
   )
-  .option('-n, --no-commit', 'If true, will skip initial commit', false)
+  .option('-n, --no-commit', 'If present, will skip initial commit', false)
   // TODO: We will need additional bootstrapping for TS (or Reason, when
   // it lands https://github.com/developit/microbundle/pull/142)
   // .option(
@@ -40,5 +40,5 @@ commander.parse(process.argv);
 createModule(moduleDirectory, {
   target: commander.target,
   scriptsVersion: commander.scriptsVersion,
-  noCommit: commander.noCommit,
+  commit: commander.commit,
 });

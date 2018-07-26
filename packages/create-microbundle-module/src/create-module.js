@@ -31,7 +31,7 @@ const getTemplateByName = async templateName => {
 
 const createModule = async (
   moduleDirectory,
-  { target, scriptsVersion, noCommit } = {}
+  { target, scriptsVersion, commit } = {}
 ) => {
   if (!moduleDirectory || typeof moduleDirectory !== 'string') {
     logger.warn(
@@ -160,7 +160,7 @@ const createModule = async (
     return;
   }
 
-  if (isGitAvailable === true && noCommit === false) {
+  if (isGitAvailable === true && commit === true) {
     logger.start('Creating initial commit');
 
     await git.add('*');
@@ -171,7 +171,7 @@ const createModule = async (
     logger.success();
   }
 
-  if (isGitAvailable === true && noCommit === true) {
+  if (isGitAvailable === true && commit === false) {
     logger.info('Skipping initial commit');
   }
 

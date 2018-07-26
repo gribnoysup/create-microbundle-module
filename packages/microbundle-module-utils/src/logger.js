@@ -2,7 +2,7 @@ import ora from 'ora';
 import chalk from 'chalk';
 import symbols from 'log-symbols';
 
-class Logger {
+export class Logger {
   constructor(name) {
     this.name = name;
     this.spinner = ora();
@@ -61,7 +61,7 @@ class Logger {
     }
   }
 
-  warning(...args) {
+  warn(...args) {
     const message = this.__stringifyArgsWithPrefix(args);
 
     if (this.spinner.isSpinning) {

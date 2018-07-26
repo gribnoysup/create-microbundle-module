@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logger error should console error input with a prefix and a error sign 1`] = `"✖ [test] some text and a number: 123"`;
+
+exports[`logger info should console log input with a prefix and a info sign 1`] = `"ℹ [test] some text and a number: 123"`;
+
+exports[`logger log should console log input with a prefix 1`] = `"[test] some text and a number: 123"`;
+
+exports[`logger warn should console warn input with a prefix and a warn sign 1`] = `"⚠ [test] some text and a number: 123"`;

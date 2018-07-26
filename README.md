@@ -98,7 +98,14 @@ Now we will go into more details what is provided with this toolbox:
 Here is the resulting folder structure:
 
 ```
-TODO:
+<module-name>
+├── .git
+├── node_modules
+├── package.json
+├── src
+│   └── <module-name>.js
+└── test
+    └── <module-name>.test.js
 ```
 
 1.  Git repository will be already initialized and first "bootstrap commit" will
@@ -206,6 +213,10 @@ one. All Git hooks are supported by husky:
 More information about these hooks and when they are triggered could be found in
 Atlassian Git Tutorial under the [Local Hooks][hooks] section
 
+## Extension points
+
+[WIP]
+
 ## Contributing
 
 Feel free to submit issues and/or PRs if you found some bugs! 🐞 The
@@ -222,7 +233,7 @@ hesitate to open an issue to start a discussion 👋
 - [ ] `TypeScript` starter templates
 - [ ] `ReasonML` starter templates
       (https://github.com/developit/microbundle/issues/141)
-  <!-- - [ ] Configurable REPL both for node and browser of some kind -->
+  <!-- - [ ] Configurable REPL both for node and browser of some kind ??? -->
 
 ## Kudos
 

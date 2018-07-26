@@ -1,0 +1,3 @@
+module.exports = {
+  customPrettierConfig: true
+};

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getPrettierConfig should resolve app config when application has one 1`] = `
+Object {
+  "customPrettierConfig": true,
+}
+`;
+
+exports[`getPrettierConfig should resolve own config when application doesn't have any 1`] = `
+Object {
+  "trailingComma": "es5",
+}
+`;
+
+exports[`getPrettierConfig should return "prettified" source when file exists 1`] = `
+"/* eslint-disable */
+
+console.log(\\"Hello!\\");
+"
+`;

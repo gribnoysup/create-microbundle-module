@@ -5,9 +5,12 @@
   "bin": {
     "microbundle-module-scripts": "index.js"
   },
-  "main": "src/main.js",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "jest --env node"
+    "test": "jest --env node",
+    "build": "babel src --out-dir dist",
+    "watch": "npm run build -- --watch",
+    "prepare": "npm run test && rm -rf dist && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +18,7 @@
   "dependencies": {
     "commander": "^2.16.0",
     "eslint": "^5.0.1",
+    "execa": "^0.10.0",
     "fs-extra": "^6.0.1",
     "husky": "^1.0.0-rc.13",
     "jest": "^23.4.1",
@@ -22,6 +26,11 @@
     "microbundle": "^0.5.1",
     "microbundle-module-utils": "^0.0.0",
     "prettier": "^1.13.7"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0"
   },
   "engines": {
     "node": ">=6.12.0"

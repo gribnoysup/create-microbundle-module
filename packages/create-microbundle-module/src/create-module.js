@@ -119,7 +119,17 @@ const createModule = async (
     const email = await git.raw(['config', 'user.email']);
 
     if (name || email) {
-      pkg.author = { name, email };
+      const author = { name, email };
+
+      for (const key in author) {
+        if (author[key]) {
+          author[key] = author[key].trim();
+        } else {
+          delete author[key];
+        }
+      }
+
+      pkg.author = author;
     }
 
     logger.success();

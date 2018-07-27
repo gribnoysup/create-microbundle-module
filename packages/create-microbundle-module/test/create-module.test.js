@@ -1,40 +1,49 @@
-import path from 'path';
 import os from 'os';
+import path from 'path';
 
 import fs from 'fs-extra';
 import dirTree from 'directory-tree';
 
 import createModule from '../src/create-module';
 
+jest.mock('fs');
+
 describe('createModule', async () => {
   const fixtureModuleDir = path.resolve(os.tmpdir(), 'my-awesome-module');
 
+  const bootstrapProject = async (options = {}) => {
+    return await createModule(fixtureModuleDir, options);
+  };
+
+  const removeProject = async () => {
+    try {
+      await fs.remove(fixtureModuleDir);
+    } catch (error) {
+      if (error.code && error.code === 'ENOENT') return;
+      throw error;
+    }
+  };
+
   beforeAll(async done => {
-    await createModule(fixtureModuleDir, {
+    await bootstrapProject({
       target: 'web',
       scriptsVersion: 'create-microbundle-module',
     });
+
     done();
   });
 
   afterAll(async done => {
-    await fs.remove(fixtureModuleDir);
+    await removeProject();
     done();
   });
 
-  it('should create initial files structure', () => {
+  it('should create project file structure', async () => {
     const files = [];
 
-    dirTree(
-      fixtureModuleDir,
-      {
-        exclude: /\.git\/.+/,
-        normalizePath: true,
-      },
-      item => {
-        files.push(item.path.replace(fixtureModuleDir, 'my-awesome-module'));
-      }
-    );
+    dirTree(fixtureModuleDir, { normalizePath: true }, item => {
+      files.push(item.path.replace(fixtureModuleDir, ''));
+    });
 
     expect(files).toMatchSnapshot();
   });
@@ -68,12 +77,6 @@ describe('createModule', async () => {
 
   it('should create package.json file', async () => {
     const pkg = await fs.readJSON(path.join(fixtureModuleDir, 'package.json'));
-
-    // INFO: package.author is dynamic and depends on git config.
-    // To avoid tests failing with unmatched snapshot, we will
-    // "delete" author
-    // TODO: mock git module to return something here?
-    delete pkg.author;
 
     expect(pkg).toMatchSnapshot();
   });

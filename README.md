@@ -47,7 +47,7 @@ are so many options around!
 Choose whatever suits you and makes you happy sharing stuff with others and go
 for it! 🎉
 
-Hovewer, if your workflow looks something like the one provided in this tool,
+However, if your workflow looks something like the one provided in this tool,
 you might find this usefull.
 
 ## What's in the package?

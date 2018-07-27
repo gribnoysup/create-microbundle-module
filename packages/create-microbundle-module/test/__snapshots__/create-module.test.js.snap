@@ -6,21 +6,12 @@ dist
 *.log
 .*
 !.gitignore
-!.microbundle-module-config
 "
-`;
-
-exports[`createModule should create initial files structure 1`] = `
-Array [
-  "my-awesome-module/.gitignore",
-  "my-awesome-module/package.json",
-  "my-awesome-module/src/my-awesome-module.js",
-  "my-awesome-module/test/my-awesome-module.test.js",
-]
 `;
 
 exports[`createModule should create package.json file 1`] = `
 Object {
+  "author": "",
   "files": Array [
     "dist",
   ],
@@ -45,6 +36,15 @@ Object {
   "umd:main": "dist/my-awesome-module.umd.js",
   "version": "0.1.0",
 }
+`;
+
+exports[`createModule should create project file structure 1`] = `
+Array [
+  "/.gitignore",
+  "/package.json",
+  "/src/my-awesome-module.js",
+  "/test/my-awesome-module.test.js",
+]
 `;
 
 exports[`createModule should create source entry 1`] = `

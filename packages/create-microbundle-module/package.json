@@ -39,7 +39,8 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "jest": "^23.4.1"
+    "jest": "^23.4.1",
+    "memfs": "^2.9.4"
   },
   "jest": {
     "testPathIgnorePatterns": [

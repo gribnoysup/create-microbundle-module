@@ -3,8 +3,10 @@ dist
 *.log
 .*
 !.gitignore
+!.npmignore
 !.eslintignore
 !.eslintrc*
 !.prettierrc*
 !.babelrc*
+!.travis.yml
 *.tgz

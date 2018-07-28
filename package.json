@@ -8,7 +8,8 @@
     "bootstrap": "lerna bootstrap -- --ignore-scripts",
     "all:exec": "lerna exec --",
     "all:publish": "lerna publish",
-    "all:add": "lerna add"
+    "all:add": "lerna add",
+    "all:test": "lerna exec -- npm run test"
   },
   "author": "Sergey Petushkov <petushkov.sergey@gmail.com>",
   "license": "ISC",

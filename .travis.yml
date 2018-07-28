@@ -1,0 +1,15 @@
+dist: trusty
+language: node_js
+node_js:
+  - 8
+  - 10
+cache:
+  directories:
+  - node_modules
+  - packages/create-microbundle-module/node_modules
+  - packages/microbundle-module-scripts/node_modules
+  - packages/microbundle-module-utils/node_modules
+script:
+  # Bootstrapping lerna packages will trigger tests
+  # on each of them:
+  - npm run bootstrap

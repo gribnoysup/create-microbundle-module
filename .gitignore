@@ -3,6 +3,7 @@ dist
 *.log
 .*
 !.gitignore
+!.npmignore
 !.eslintignore
 !.eslintrc*
 !.prettierrc*

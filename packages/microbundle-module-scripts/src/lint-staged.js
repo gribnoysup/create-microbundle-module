@@ -20,6 +20,9 @@ export const getLintStagedConfigPath = async () => {
 };
 
 const lintStaged = async ({ debug }) => {
+  // TODO: Check for staged files first to show a nice message?
+  // git status --porcelain --untracked-files=no
+
   const configPath = await getLintStagedConfigPath();
 
   return await execa(

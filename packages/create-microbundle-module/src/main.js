@@ -1,11 +1,12 @@
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
 import commander from 'commander';
+
 import createModule from './create-module';
 
 let moduleDirectory;
 
-const { name, version } = fs.readFileSync(
+const { name, version } = fs.readJSONSync(
   path.resolve(__dirname, '..', 'package.json')
 );
 
@@ -33,9 +34,8 @@ commander
   //   /^(javascript|typescript|reason)$/i,
   //   'javascript'
   // )
-  .action(dir => (moduleDirectory = dir));
-
-commander.parse(process.argv);
+  .action(dir => (moduleDirectory = dir))
+  .parse(process.argv);
 
 createModule(moduleDirectory, {
   target: commander.target,

@@ -175,7 +175,7 @@ const createModule = async (
 
     await git.add('*');
     await git.commit(
-      'Initial commit (bootstrapped with create-microbundle-module) 🚀'
+      'Initial commit (bootstrapped with create-microbundle-module) :rocket:'
     );
 
     logger.success();

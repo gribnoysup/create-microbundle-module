@@ -3,7 +3,7 @@ import lintStaged from './lint-staged';
 
 commander
   .name('lint-staged')
-  .option('-d, --debug', 'Enable debug mode', false)
+  .option('-d, --debug', 'enable debug mode', false)
   .parse(process.argv);
 
-lintStaged({ debug: commander.debug });
+lintStaged({ debug: !!commander.debug });

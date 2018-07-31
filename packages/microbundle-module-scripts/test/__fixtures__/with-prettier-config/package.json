@@ -1,11 +1,13 @@
 {
-  "name": "$module-name",
+  "name": "my-module",
   "version": "0.1.0",
-  "main": "dist/$module-name.js",
-  "umd:main": "dist/$module-name.umd.js",
-  "module": "dist/$module-name.m.js",
-  "source": "src/$module-name.js",
-  "files": ["dist"],
+  "main": "dist/my-module.js",
+  "umd:main": "dist/my-module.umd.js",
+  "module": "dist/my-module.m.js",
+  "source": "src/my-module.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "microbundle-module-scripts test",
     "build": "microbundle-module-scripts build",
@@ -17,7 +19,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint-staged",
-      "pre-push": "npm test -- --findRelatedTests"
+      "pre-push": "npm test"
     }
   }
 }

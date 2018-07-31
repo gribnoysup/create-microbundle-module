@@ -29,7 +29,7 @@ describe('getPrettierConfig', () => {
     paths.__updateAppPaths(fixturePaths.basicModule);
 
     const output = await prettify([
-      fixturePaths.resolve(fixturePaths.basicModule, 'src', 'index.js'),
+      fixturePaths.resolve(fixturePaths.basicModule, 'src', 'my-module.js'),
     ]);
 
     expect(output[0]).toMatchSnapshot();
@@ -43,7 +43,7 @@ describe('getPrettierConfig', () => {
     const src = fixturePaths.resolve(
       fixturePaths.basicModule,
       'src',
-      'index.js'
+      'my-module.js'
     );
 
     const output = await prettify([src], { write: true });

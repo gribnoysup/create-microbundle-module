@@ -15,6 +15,9 @@ Object {
 exports[`getPrettierConfig should return "prettified" source when file exists 1`] = `
 "/* eslint-disable */
 
-console.log(\\"Hello!\\");
+export default async function myModule() {
+  const result = await Promise.resolve(123);
+  return result.toString();
+}
 "
 `;

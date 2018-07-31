@@ -25,14 +25,20 @@ export default {
   nodePaths: nodePaths,
   ownPath: resolveOwn(),
   appPath: resolveApp(),
+  appPackageJSONPath: resolveApp('package.json'),
   runnerPath: resolveOwn('index.js'),
-  ownPrettierConfig: resolveSrc('config', 'prettier'),
+  // --- CONFIG:
+  ownPrettierConfig: resolveSrc('config', 'prettier.js'),
   appPrettierConfig: resolveApp('prettier.config.js'),
-  ownLintStagedConfig: resolveSrc('config', 'lint-staged'),
+  ownLintStagedConfig: resolveSrc('config', 'lint-staged.js'),
   appLintStagedConfig: resolveApp('lint-staged.config.js'),
-  ownEslintConfig: resolveSrc('config', 'eslint'),
+  ownEslintConfig: resolveSrc('config', 'eslint.js'),
   appEslintConfig: resolveApp('.eslintrc.js'),
+  ownJestConfig: resolveSrc('config', 'jest.js'),
+  appJestConfig: resolveApp('jest.config.js'),
+  // --- BIN:
   lintStagedBin: require.resolve('lint-staged'),
+  jestBin: require.resolve('jest'),
   // INFO: These escape hatches should be used only for testing purposes
   __updateAppPaths(newPath) {
     this.appPath = path.resolve(newPath);

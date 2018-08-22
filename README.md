@@ -1,4 +1,4 @@
-# create-microbundle-module
+# [WIP] create-microbundle-module
 
 Bootstrap your development environment for creating small javascript libraries
 with no hassle 🎉
